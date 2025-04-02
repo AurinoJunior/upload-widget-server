@@ -1,7 +1,33 @@
 import { fastifyCors } from "@fastify/cors"
 import { fastify } from "fastify"
+import {
+  hasZodFastifySchemaValidationErrors,
+  serializerCompiler,
+  validatorCompiler,
+} from "fastify-type-provider-zod"
 
 const server = fastify()
+
+server.setValidatorCompiler(validatorCompiler)
+server.setSerializerCompiler(serializerCompiler)
+
+server.setErrorHandler((error, _, reply) => {
+  if (hasZodFastifySchemaValidationErrors(error)) {
+    return reply.status(400).send({
+      message: "Validation error",
+      issues: error.cause,
+    })
+  }
+
+  // Aqui nesse ponto entra as ferramentas de monitoramento e observabilidade
+  // Como Sentry, DataDog, NewRelic, etc.
+
+  console.error(error)
+
+  return reply.status(500).send({
+    message: "Internal server error",
+  })
+})
 
 server.register(fastifyCors, { origin: "*" })
 
