@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "tsx watch --env-file .env src/infra/http/server.ts",
     "test": "dotenv -e .env.test -- vitest run",
-    "test:watch": "dotenv -e .env.test -- vitest watch"
+    "test:watch": "dotenv -e .env.test -- vitest watch",
+    "lint:check": "biome check"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
