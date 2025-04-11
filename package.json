@@ -1,16 +1,19 @@
 {
-  "name": "upload-server",
+  "name": "upload-widget-server",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "tsx watch --env-file .env src/infra/http/server.ts",
+    "dev": "node scripts/start.js",
     "test": "dotenv -e .env.test -- vitest run",
     "test:watch": "dotenv -e .env.test -- vitest watch",
     "lint:check": "biome check",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
-    "db:studio": "drizzle-kit studio"
+    "db:studio": "drizzle-kit studio",
+    "services:up": "docker compose -f docker/compose.yml up -d",
+    "services:stop": "docker compose -f docker/compose.yml stop",
+    "services:down": "docker compose -f docker/compose.yml down"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
