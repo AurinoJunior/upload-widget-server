@@ -1,8 +1,12 @@
 const { spawn } = require("node:child_process");
 
 // Executa de forma sequencial
-const commandStart =
-  "yarn services:up && node scripts/wait-for-db.js && yarn tsx watch --env-file .env src/infra/http/server.ts";
+const commandStart = [
+  "yarn services:up",
+  "node scripts/wait-for-db.js",
+  "yarn db:migrate",
+  "yarn tsx watch --env-file .env src/infra/http/server.ts",
+].join(" && ");
 
 spawn(commandStart, { stdio: "inherit", shell: true });
 
