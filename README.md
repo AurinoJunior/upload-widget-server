@@ -36,7 +36,7 @@ Esse projeto foi um projeto de estudo feito na Pós Tech developer 360 na Faculd
 ## :video_game: Iniciando o projeto
 
 1. Clone o repositorio e instale as dependencias com `yarn install`.
-2. Garanta que o docker está iniciado no sistema.
+2. Garanta que o docker está disponivel no sistema.
 3. Rode o comando `yarn dev` para subir os containers, com servidor e banco de dados.
 4. É possivel rodar os testes isoladamente com o comandao `yarn test`.
 5. Em construção...
