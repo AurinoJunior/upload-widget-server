@@ -8,5 +8,5 @@ export const uploads = pgTable("uploads", {
   name: text("name").notNull(),
   remoteKey: text("remote_key").notNull().unique(),
   remoteUrl: text("remote_url").notNull(),
-  createAt: timestamp("created_at").defaultNow().notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
 })
