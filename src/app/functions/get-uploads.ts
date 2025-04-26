@@ -55,8 +55,8 @@ export async function getUploads(
 
         return desc(fields.id)
       })
-      .offset((page - 1) * pageSize)
-      .limit(pageSize),
+      .offset((page - 1) * pageSize) // OFFSET é de qual entrada você vai começar a ler
+      .limit(pageSize), // LIMIT é quantos valores você quer ler de uma vez.
 
     db
       .select({ total: count(schema.uploads.id) })
