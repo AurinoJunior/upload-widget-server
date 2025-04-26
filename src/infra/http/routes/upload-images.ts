@@ -36,7 +36,7 @@ export const uploadImageRoute: FastifyPluginAsyncZod = async server => {
       })
 
       // verifica se o arquivo é muito grande
-      if(uploadedFile.file.truncated) {
+      if (uploadedFile.file.truncated) {
         return reply.status(400).send({ message: "File is too large" })
       }
 

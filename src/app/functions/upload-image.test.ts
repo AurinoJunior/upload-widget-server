@@ -1,33 +1,33 @@
-import { randomUUID } from 'node:crypto'
-import { Readable } from 'node:stream'
-import { InvalidFileFormat } from '@/app/functions/errors/invalid-file-format'
-import { uploadImage } from '@/app/functions/upload-image'
-import { db } from '@/infra/db'
-import { schema } from '@/infra/db/schemas'
-import { unwrapEither, isRightResult, isLeftError } from '@/infra/shared/either'
-import { eq } from 'drizzle-orm'
-import { beforeAll, describe, expect, it, vi } from 'vitest'
+import { randomUUID } from "node:crypto"
+import { Readable } from "node:stream"
+import { InvalidFileFormat } from "@/app/functions/errors/invalid-file-format"
+import { uploadImage } from "@/app/functions/upload-image"
+import { db } from "@/infra/db"
+import { schema } from "@/infra/db/schemas"
+import { isLeftError, isRightResult, unwrapEither } from "@/infra/shared/either"
+import { eq } from "drizzle-orm"
+import { beforeAll, describe, expect, it, vi } from "vitest"
 
-describe('upload image', () => {
+describe("upload image", () => {
   beforeAll(() => {
-    vi.mock('@/infra/storage/upload-file-to-storage', () => {
+    vi.mock("@/infra/storage/upload-file-to-storage", () => {
       return {
         uploadFileToStorage: vi.fn().mockImplementation(() => {
           return {
             key: `${randomUUID()}.jpg`,
-            url: 'https://storage.com/image.jpg',
+            url: "https://storage.com/image.jpg",
           }
         }),
       }
     })
   })
 
-  it('should be able to upload an image', async () => {
+  it("should be able to upload an image", async () => {
     const fileName = `${randomUUID()}.jpg`
 
     const sut = await uploadImage({
       fileName,
-      contentType: 'image/jpg',
+      contentType: "image/jpg",
       contentStream: Readable.from([]),
     })
 
@@ -41,12 +41,12 @@ describe('upload image', () => {
     expect(result).toHaveLength(1)
   })
 
-  it('should not be able to upload an invalid file', async () => {
+  it("should not be able to upload an invalid file", async () => {
     const fileName = `${randomUUID()}.pdf`
 
     const sut = await uploadImage({
       fileName,
-      contentType: 'document/pdf',
+      contentType: "document/pdf",
       contentStream: Readable.from([]),
     })
 

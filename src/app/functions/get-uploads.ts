@@ -1,13 +1,13 @@
-import { db } from '@/infra/db'
-import { schema } from '@/infra/db/schemas'
-import { type Either, makeRightResult } from '@/infra/shared/either'
-import { asc, count, desc, ilike } from 'drizzle-orm'
-import { z } from 'zod'
+import { db } from "@/infra/db"
+import { schema } from "@/infra/db/schemas"
+import { type Either, makeRightResult } from "@/infra/shared/either"
+import { asc, count, desc, ilike } from "drizzle-orm"
+import { z } from "zod"
 
 const getUploadsInput = z.object({
   searchQuery: z.string().optional(),
-  sortBy: z.enum(['createdAt']).optional(),
-  sortDirection: z.enum(['asc', 'desc']).optional(),
+  sortBy: z.enum(["createdAt"]).optional(),
+  sortDirection: z.enum(["asc", "desc"]).optional(),
   page: z.number().optional().default(1),
   pageSize: z.number().optional().default(20),
 })
@@ -45,11 +45,11 @@ export async function getUploads(
         searchQuery ? ilike(schema.uploads.name, `%${searchQuery}%`) : undefined
       )
       .orderBy(fields => {
-        if (sortBy && sortDirection === 'asc') {
+        if (sortBy && sortDirection === "asc") {
           return asc(fields[sortBy])
         }
 
-        if (sortBy && sortDirection === 'desc') {
+        if (sortBy && sortDirection === "desc") {
           return desc(fields[sortBy])
         }
 
