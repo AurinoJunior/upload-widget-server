@@ -42,6 +42,7 @@ export async function getUploads(
       })
       .from(schema.uploads)
       .where(
+        // ilike faz uma busca que não diferencia maiúsculas de minúsculas
         searchQuery ? ilike(schema.uploads.name, `%${searchQuery}%`) : undefined
       )
       .orderBy(fields => {
