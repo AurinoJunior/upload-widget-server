@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "engines": {
+    "node": ">=22.0.0"
+  },
   "scripts": {
     "dev": "node scripts/start.js",
     "pretest": "yarn services:up && node scripts/wait-for-db.js && node scripts/reset-db.js && yarn db:migrate:test",
@@ -35,6 +38,7 @@
     "@fastify/multipart": "9.0.3",
     "@fastify/swagger": "9.4.2",
     "@fastify/swagger-ui": "5.2.2",
+    "csv-stringify": "6.5.2",
     "dayjs": "1.11.13",
     "drizzle-orm": "0.41.0",
     "fastify": "5.2.2",
