@@ -22,5 +22,6 @@ function servicesStop() {
   });
 }
 
-process.on("SIGINT", servicesStop); // SIGINT -> Saida forçada Ex: ctrl+c
-process.on("SIGTERM", servicesStop); // SIGTERM -> saida natural
+process.on("SIGINT", servicesStop); // SIGINT -> Sinal de saida forçada Ex: ctrl+c
+process.on("SIGTERM", servicesStop); // SIGTERM -> Sinal de saida normal.
+process.on("exit", servicesStop); // Exit -> Sinal de saida natural.
