@@ -16,7 +16,6 @@
 - [Contexto](#blue_book-contexto)
 - [Tecnologias](#computer-tecnologias)
 - [Iniciando o projeto](#video_game-iniciando-o-projeto)
-- [Como usar](#beers-como-usar)
 - [Licença](#page_with_curl-licença)
 
 ## :blue_book: Contexto
@@ -39,10 +38,6 @@ Esse projeto foi um projeto de estudo feito na Pós Tech developer 360 na Faculd
 2. Garanta que o docker está disponivel no sistema.
 3. Rode o comando `yarn dev` para subir os containers, com servidor e banco de dados.
 4. É possivel rodar os testes isoladamente com o comandao `yarn test`.
-
-## :beers: Como usar
-
-Em construção...
 
 ## :page_with_curl: Licença
 
