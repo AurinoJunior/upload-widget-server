@@ -9,9 +9,8 @@
   "scripts": {
     "start": "node dist/infra/http/server.mjs",
     "dev": "node scripts/start.js",
-    "pretest": "yarn services:up && node scripts/wait-for-db.js && node scripts/reset-db.js && yarn db:migrate:test",
-    "test": "dotenv -e .env.test -- vitest run",
-    "posttest": "yarn services:stop",
+    "test": "node scripts/run-tests.js",
+    "ci:test": "yarn db:migrate:test && dotenv -e .env.test -- vitest run",
     "lint:check": "biome check src",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
