@@ -9,6 +9,7 @@ export const uploadImageRoute: FastifyPluginAsyncZod = async server => {
     {
       schema: {
         summary: "Upload an Image",
+        tags: ["uploads"],
         consumes: ["multipart/form-data"],
         response: {
           201: z.object({ url: z.string() }),
@@ -36,7 +37,7 @@ export const uploadImageRoute: FastifyPluginAsyncZod = async server => {
       })
 
       // verifica se o arquivo é muito grande
-      if(uploadedFile.file.truncated) {
+      if (uploadedFile.file.truncated) {
         return reply.status(400).send({ message: "File is too large" })
       }
 

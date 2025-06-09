@@ -1,4 +1,4 @@
-const { spawn } = require("node:child_process");
+const { spawn } = require("node:child_process")
 
 // Executa de forma sequencial
 const commandStart = [
@@ -6,20 +6,20 @@ const commandStart = [
   "node scripts/wait-for-db.js",
   "yarn db:migrate",
   "yarn tsx watch --env-file .env src/infra/http/server.ts",
-].join(" && ");
+].join(" && ")
 
-spawn(commandStart, { stdio: "inherit", shell: true });
+spawn(commandStart, { stdio: "inherit", shell: true })
 
 function servicesStop() {
-  console.warn("Encerrando...");
+  console.warn("Encerrando...")
 
   spawn("yarn services:stop", {
     detached: true, // continua executando mesmo depois de encerrar o processo principal.
     shell: true,
     windowsHide: true,
     stdio: "ignore",
-  });
+  })
 }
 
-process.on("SIGINT", servicesStop); // SIGINT -> Saida forçada Ex: ctrl+c
-process.on("SIGTERM", servicesStop); // SIGTERM -> saida natural
+process.on("SIGINT", servicesStop) // SIGINT -> Saida forçada Ex: ctrl+c
+process.on("SIGTERM", servicesStop) // SIGTERM -> saida natural
